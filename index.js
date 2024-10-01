@@ -60,13 +60,14 @@ const questions = [
 
 // TODO: Create a function to write README file
 // Source: Xpert Learning Assistant
-function writeToFile(fileName, data) {
+function writeToFile(projectTitle, data) {
+    const fileName = `${projectTitle.replace(/\s+/g, '_').toLowerCase()}_README.md`;
     fs.writeFile(fileName, data, (err) => {
         if (err) {
             console.error('Error writing to file:', err);
             return;
         }
-        console.log('README file has been successfully created!');
+        console.log(`README file has been successfully created: ${fileName}`);
     });
 }
 
@@ -76,25 +77,25 @@ function init() {
     inquirer.prompt(questions)
         .then((data) => {
             const readmeContent = `
-            # ${ data.projectTitle }
+            # ${data.projectTitle}
             ## Description
-            ${ data.projectDescription }
+            ${data.description}
             ## Installation Instructions
-            ${ data.installationInstructions }
+            ${data.installationInstructions}
             ## Usage Information
-            ${ data.usageInformation }
+            ${data.usageInformation}
             ## Contribution Guidelines
-            ${ data.contributionGuidelines }
+            ${data.contributionGuidelines}
             ## Test Instructions
-            ${ data.testInstructions }
+            ${data.testInstructions}
             ## License
-            ${ data.license }
+            ${data.license}
             ## GitHub Username
-            ${ data.githubUsername }
+            ${data.githubUsername}
             ## Email Address
-            ${ data.email }
+            ${data.email}
             `;
-            writeToFile('README.md', readmeContent);
+            writeToFile(data.projectTitle, readmeContent);
         })
         .catch((error) => {
             console.error('Error with inquirer:', error);
