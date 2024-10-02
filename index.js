@@ -1,12 +1,15 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
+// CommonJS - did not use
 // const fs = require('fs'); 
-import fs from 'fs';
 // const inquirer = require('inquirer');
+
+// Used ESM for this project
+import fs from 'fs';
 import inquirer from 'inquirer';
 
 
-// TODO: Create an array of questions for user input
-// Source: My brain
+// Aray of questions for user input
+// Source: Challenge 7 criteria + my brain
 const questions = [
     {
         type: 'input',
@@ -59,7 +62,7 @@ const questions = [
 // console.log(questions); Used to test if questions array was created correctly
 
 // Function to write README file
-// Source: Xpert Learning Assistant
+// Source: Xpert Learning Assistant + my brain
 function writeToFile(projectTitle, data) {
     const fileName = `${projectTitle.replace(/\s+/g, '_').toLowerCase()}_README.md`;
     fs.writeFile(fileName, data, (err) => {
@@ -71,8 +74,8 @@ function writeToFile(projectTitle, data) {
     });
 }
 
-// TODO: Function to initialize app
-// Source: Xpert Learning Assistant
+// Function to initialize app
+// Source: Xpert Learning Assistant + my brain
 function init() {
     inquirer.prompt(questions)
         .then((data) => {
@@ -88,7 +91,7 @@ function init() {
             };
 
             // License confirmation mapped to corresponding license
-            // Source: my brain
+            // Source: My brain
             const licenseConfirmation = {
                 MIT: 'This project is licensed under the MIT license.',
                 Apache: 'This project is licensed under the Apache license.',
